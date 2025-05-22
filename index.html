@@ -74,45 +74,49 @@
     }
 
     /* COUNTDOWN STYLES */
-    #countdown {
-      font-family: 'Dancing Script', cursive;
-      text-align: center;
+    .countdown-dual {
+      display: flex;
+      gap: 15px;
+      margin: 25px 0;
+    }
+    
+    .countdown-box {
+      flex: 1;
       background: rgba(255, 240, 245, 0.8);
       border-radius: 20px;
       padding: 20px;
-      margin: 25px 0;
       box-shadow: 0 4px 15px rgba(233, 30, 99, 0.2);
       border: 1px solid #ffb6c1;
     }
-
+    
+    .countdown-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 24px;
+      color: #d81b60;
+      margin-bottom: 15px;
+    }
+    
     .countdown-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 10px;
     }
-
+    
     .countdown-unit {
       padding: 10px;
     }
-
+    
     .countdown-number {
       font-size: 32px;
       font-weight: bold;
       color: #e91e63;
       line-height: 1;
     }
-
+    
     .countdown-label {
       font-size: 14px;
       color: #ff69b4;
       margin-top: 5px;
-    }
-
-    #countdown-title {
-      font-size: 24px;
-      color: #d81b60;
-      margin-bottom: 15px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
 
     /* NOTIFICATION BUTTON */
@@ -152,6 +156,11 @@
       color: #e91e63;
       margin-bottom: 30px;
     }
+
+    @media (max-width: 600px) {
+      .countdown-dual { flex-direction: column; }
+      .countdown-number { font-size: 24px; }
+    }
   </style>
 </head>
 <body>
@@ -161,29 +170,51 @@
     
     <div class="heart">♥ ♥ ♥</div>
 
-    <!-- LOVE TIMER -->
-    <div id="countdown">
-      <div id="countdown-title">Our Love Journey</div>
-      <div class="countdown-grid">
-        <div class="countdown-unit">
-          <div class="countdown-number" id="days">0</div>
-          <div class="countdown-label">Days</div>
+    <!-- DUAL COUNTDOWN -->
+    <div class="countdown-dual">
+      <!-- Time Together -->
+      <div class="countdown-box">
+        <div class="countdown-title">Our Love Journey</div>
+        <div class="countdown-grid">
+          <div class="countdown-unit">
+            <div class="countdown-number" id="days-together">0</div>
+            <div class="countdown-label">Days</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-number" id="hours-together">0</div>
+            <div class="countdown-label">Hours</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-number" id="minutes-together">0</div>
+            <div class="countdown-label">Minutes</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-number" id="seconds-together">0</div>
+            <div class="countdown-label">Seconds</div>
+          </div>
         </div>
-        <div class="countdown-unit">
-          <div class="countdown-number" id="hours">0</div>
-          <div class="countdown-label">Hours</div>
-        </div>
-        <div class="countdown-unit">
-          <div class="countdown-number" id="minutes">0</div>
-          <div class="countdown-label">Minutes</div>
-        </div>
-        <div class="countdown-unit">
-          <div class="countdown-number" id="seconds">0</div>
-          <div class="countdown-label">Seconds</div>
-        </div>
-        <div class="countdown-unit">
-          <div class="countdown-number">❤️</div>
-          <div class="countdown-label">Together</div>
+      </div>
+      
+      <!-- Next Monthsary -->
+      <div class="countdown-box">
+        <div class="countdown-title">Next Monthsary</div>
+        <div class="countdown-grid">
+          <div class="countdown-unit">
+            <div class="countdown-number" id="days-left">0</div>
+            <div class="countdown-label">Days</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-number" id="hours-left">0</div>
+            <div class="countdown-label">Hours</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-number" id="minutes-left">0</div>
+            <div class="countdown-label">Minutes</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-number" id="seconds-left">0</div>
+            <div class="countdown-label">Seconds</div>
+          </div>
         </div>
       </div>
     </div>
@@ -216,22 +247,39 @@
   </div>
 
   <script>
-    // ===== LOVE TIMER =====
+    // ===== DUAL COUNTDOWNS =====
     const loveStart = new Date('2025-04-10T00:00:00');
-
-    function updateCountdown() {
+    
+    function getNextMonthsary() {
       const now = new Date();
-      const diff = now - loveStart;
+      let nextMonth = now.getMonth() + 1;
+      let year = now.getFullYear();
+      
+      if (nextMonth > 11) {
+        nextMonth = 0;
+        year++;
+      }
+      
+      return new Date(year, nextMonth, 10);
+    }
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-      document.getElementById('days').textContent = days;
-      document.getElementById('hours').textContent = hours;
-      document.getElementById('minutes').textContent = minutes;
-      document.getElementById('seconds').textContent = seconds;
+    function updateCountdowns() {
+      const now = new Date();
+      const nextMonthsary = getNextMonthsary();
+      
+      // Time together
+      const timeTogether = now - loveStart;
+      document.getElementById('days-together').textContent = Math.floor(timeTogether / (1000 * 60 * 60 * 24));
+      document.getElementById('hours-together').textContent = Math.floor((timeTogether % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      document.getElementById('minutes-together').textContent = Math.floor((timeTogether % (1000 * 60 * 60)) / (1000 * 60));
+      document.getElementById('seconds-together').textContent = Math.floor((timeTogether % (1000 * 60)) / 1000);
+      
+      // Next monthsary countdown
+      const timeLeft = nextMonthsary - now;
+      document.getElementById('days-left').textContent = Math.max(0, Math.floor(timeLeft / (1000 * 60 * 60 * 24)));
+      document.getElementById('hours-left').textContent = Math.max(0, Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+      document.getElementById('minutes-left').textContent = Math.max(0, Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)));
+      document.getElementById('seconds-left').textContent = Math.max(0, Math.floor((timeLeft % (1000 * 60)) / 1000));
     }
 
     // ===== JUNE 10 NOTIFICATION =====
@@ -270,8 +318,8 @@
     }
     
     // Initialize
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    updateCountdowns();
+    setInterval(updateCountdowns, 1000);
 
     if (checkNotificationSupport()) {
       if (Notification.permission === 'granted') {
@@ -286,4 +334,4 @@
     }
   </script>
 </body>
-</html>
+  </html>
