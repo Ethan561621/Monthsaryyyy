@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy 2nd Monthsary!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #ffe0ec, #ffe8f1);
+      font-family: 'Poppins', sans-serif;
+      color: #4a2c2a;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 20px;
+      background-color: #fff0f5;
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      border: 2px solid #ffb6c1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: linear-gradient(to right, #ff69b4, #ff8fab, #ffb3c6);
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 48px;
+      text-align: center;
+      color: #e91e63;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.8;
+      text-align: justify;
+      margin-bottom: 20px;
+      padding: 0 10px;
+    }
+
+    .footer {
+      text-align: center;
+      font-family: 'Dancing Script', cursive;
+      font-size: 28px;
+      color: #d81b60;
+      margin-top: 30px;
+      font-weight: bold;
+    }
+
+    .heart {
+      text-align: center;
+      font-size: 30px;
+      color: #ff69b4;
+      margin: 20px 0;
+      animation: pulse 1.5s infinite;
+    }
+
+    /* COUNTDOWN STYLES */
+    #countdown {
+      font-family: 'Dancing Script', cursive;
+      text-align: center;
+      background: rgba(255, 240, 245, 0.8);
+      border-radius: 20px;
+      padding: 20px;
+      margin: 25px 0;
+      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.2);
+      border: 1px solid #ffb6c1;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .countdown-unit {
+      padding: 10px;
+    }
+
+    .countdown-number {
+      font-size: 32px;
+      font-weight: bold;
+      color: #e91e63;
+      line-height: 1;
+    }
+
+    .countdown-label {
+      font-size: 14px;
+      color: #ff69b4;
+      margin-top: 5px;
+    }
+
+    #countdown-title {
+      font-size: 24px;
+      color: #d81b60;
+      margin-bottom: 15px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    /* NOTIFICATION BUTTON */
+    #notify-btn {
+      background: #e91e63;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-family: 'Poppins';
+      margin: 30px auto;
+      display: block;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 16px;
+    }
+    
+    #notify-btn:hover {
+      background: #d81b60;
+      transform: scale(1.05);
+    }
+    
+    #notify-btn.enabled {
+      background: #4CAF50;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .date {
+      text-align: center;
+      font-style: italic;
+      color: #e91e63;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Happy 2nd Monthsary Baby!</h1>
+    <div class="date">Celebrating our love since April 10, 2025</div>
+    
+    <div class="heart">♥ ♥ ♥</div>
+
+    <!-- LOVE TIMER -->
+    <div id="countdown">
+      <div id="countdown-title">Our Love Journey</div>
+      <div class="countdown-grid">
+        <div class="countdown-unit">
+          <div class="countdown-number" id="days">0</div>
+          <div class="countdown-label">Days</div>
+        </div>
+        <div class="countdown-unit">
+          <div class="countdown-number" id="hours">0</div>
+          <div class="countdown-label">Hours</div>
+        </div>
+        <div class="countdown-unit">
+          <div class="countdown-number" id="minutes">0</div>
+          <div class="countdown-label">Minutes</div>
+        </div>
+        <div class="countdown-unit">
+          <div class="countdown-number" id="seconds">0</div>
+          <div class="countdown-label">Seconds</div>
+        </div>
+        <div class="countdown-unit">
+          <div class="countdown-number">❤️</div>
+          <div class="countdown-label">Together</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- YOUR COMPLETE MESSAGE -->
+    <p>
+      Dalawang buwan pa lang ang lumilipas pero pakiramdam ko ang dami na nating pinagdaanan at naipon na alaala. Sa bawat araw na kasama kita mas lalo kitang minamahal ng totoo. Salamat sa pag-unawa sa malasakit at sa pagmamahal na buong buo mong binibigay.
+    </p>
+
+    <p>
+      Hindi man perpekto sa lahat ng oras pero ikaw ang dahilan kung bakit kaya kong ngumiti kahit pagod at bakit mas pinipili kong magpatuloy sa kabila ng lahat. Sayo ko natagpuan ang saya lambing at pag-ibig na totoo.
+    </p>
+
+    <p>
+      Alam kong simula pa lang ito ng mas mahaba nating kwento. Handa akong makasama ka sa mga araw ng ligaya at maging sa mga araw ng tampuhan.
+    </p>
+
+    <p>
+      Salamat sa lahat baby. Asahan mong narito lang ako hindi lang sa monthsary natin kundi sa bawat bukas na darating.
+    </p>
+
+    <div class="heart">♥ ♥ ♥</div>
+    
+    <!-- NOTIFICATION TOGGLE -->
+    <button id="notify-btn">🔔 Enable Monthsary Alerts</button>
+    
+    <div class="footer">
+      I Love You Baby!! Happy 2nd Monthsary!!
+    </div>
+  </div>
+
+  <script>
+    // ===== LOVE TIMER =====
+    const loveStart = new Date('2025-04-10T00:00:00');
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = now - loveStart;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
+    }
+
+    // ===== JUNE 10 NOTIFICATION =====
+    const notifyBtn = document.getElementById('notify-btn');
+    
+    function checkNotificationSupport() {
+      if (!('Notification' in window)) {
+        notifyBtn.style.display = 'none';
+        return false;
+      }
+      return true;
+    }
+    
+    function enableNotifications() {
+      if (!checkNotificationSupport()) return;
+      
+      notifyBtn.textContent = '🔔 Alerts Enabled!';
+      notifyBtn.classList.add('enabled');
+      
+      // Check every minute for June 10 at midnight
+      setInterval(() => {
+        const now = new Date();
+        if (now.getMonth() === 5 && now.getDate() === 10 && now.getHours() === 0 && now.getMinutes() === 0) {
+          showNotification();
+        }
+      }, 60000);
+    }
+    
+    function showNotification() {
+      if (Notification.permission === 'granted') {
+        new Notification('🎉 Happy Monthsary!', {
+          body: 'Celebrating another beautiful month together!',
+          icon: 'https://i.imgur.com/7k7EH3m.png'
+        });
+      }
+    }
+    
+    // Initialize
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    if (checkNotificationSupport()) {
+      if (Notification.permission === 'granted') {
+        enableNotifications();
+      } else {
+        notifyBtn.addEventListener('click', () => {
+          Notification.requestPermission().then(permission => {
+            if (permission === 'granted') enableNotifications();
+          });
+        });
+      }
+    }
+  </script>
+</body>
+</html>
